@@ -7,7 +7,79 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <!--less gooo a new onee-->
+    <div class="grain-overlay"></div>
+    <div class="app-wrapper">
+        <header>
+            <div class="logo">
+                <span class="logo-dot"></span>
+                TypeRush
+            </div>
+            <div class="header-right">
+                <span class="theme-tag">v2.1</span>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="page-title-area">
+                <h1>Test the <span>typing speed</span></h1>
+                <p>Less see how much fast you can type. This gives accurate typing speed and accuracy tracking dw about tht!</p>
+            </div>
+            <div class="controls-row">
+                <div class="timer-presets">
+                    <span class="preset-label">Time:</span>
+                    <button class="preset-btn" data-time="15">15s</button>
+                    <button class="preset-btn active" data-time="30">30s</button>
+                    <button class="preset-btn" data-time="60">60s</button>
+                    <button class="preset-btn" data-time="120">2min</button>
+                    <div class="custom time-wrap">
+                        <label class="word-count-toggle">
+                            <input type="checkbox" id="wordBarToggle" checked>
+                            word bar <!--hehe not necessary but stilllll-->
+                        </label>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card highlight-wpm">
+                        <span class="stat-label">WPM</span>
+                        <span class="stat-value wpm-val" id="wpmDisplay">--</span>
+                        <span class="stat-sub">words/min</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Accuracy</span>
+                        <span class="stat-value accuracy-val" id="accuracyDisplay">--</span>
+                        <span class="stat-sub">% correct</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Mistakes</span>
+                        <span class="stat-value mistakes-val" id="mistakeDisplay">0</span>
+                        <span class="stat-sub">errors made</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Time</span>
+                        <span class="stat-value timer-val" id="timerDisplay">30</span>
+                        <span class="stat-sub">seconds left</span>
+                    </div>
+                </div>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar-fill" id="progressBar"></div>
+                </div>
+                <div class="typing-area-wrapper">
+                    <div class="typing-display-container" id="typingContainer">
+                        <div class="word-count-bar" id="wordCountBar"></div>
+                        <div class="text-display" id="textDisplay"></div>
+                        <textarea id="hiddenInput" class="hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+                        <span class="cap-indicator" id="capIndicator">CAPS</span>
+                        <span class="click-hunt">click to start and ;ess see what you are capable of!</span>
+                    </div>
+                </div>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar-fill" id="progressBar"></div>
+                </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
