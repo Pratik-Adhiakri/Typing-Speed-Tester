@@ -1,0 +1,47 @@
+/*less do the styling part*/
+/*i am gonna make this more formatized and best fs (my best oat) less goo*/
+*,*::before,*::after{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+:root{
+    --bg-primary:#0d0d12;
+    --bg-secondary:#13131a;
+    --bg-card:#1a1a24;
+    --bg-card-hover:#1f1f2e;
+    --accent:#e8c547;
+    --accent-alt:#f07070;
+    --accent-green:#5ecfa0;
+    --accent-blue:#6ab0f5;
+    --text-primary:#e8e8f0;
+    --text-muted:#6b6b80;
+    --text-dim:#3a3a50;
+    --correct-color:#5ecfa0;
+    --wrong-color:#f07070;
+    --cursor-color:#e8c547;
+    --border:rgba(255,255,255,0.06);
+}
+/*woah thas a lot of constants*/
+html{
+    scroll-behavior: smooth;/*first time using thiss*/
+}
+body{
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'DM Sans',sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+body::before{
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 60%;
+    height: 60%;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(ellipse at center, rgba(232,197,71,0.04)0%,transparent 65%);
+}
