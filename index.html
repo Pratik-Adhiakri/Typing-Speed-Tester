@@ -69,17 +69,62 @@
                         <div class="text-display" id="textDisplay"></div>
                         <textarea id="hiddenInput" class="hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
                         <span class="cap-indicator" id="capIndicator">CAPS</span>
-                        <span class="click-hunt">click to start and ;ess see what you are capable of!</span>
+                        <span class="click-hunt">click to start and less see what you are capable of!</span>
                     </div>
                 </div>
-                <div class="progress-bar-wrap">
-                    <div class="progress-bar-fill" id="progressBar"></div>
+                <div class="test-complete-bar" id="completeBar"></div>
+                <div class="action-row">
+                    <button class="btn-restart" id="restartBtn">
+                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg><!--had to google this--> 
+                       Restart
+                    </button>
+                    <button class="btn-new-text" id="newTextBtn">
+                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        New Text
+                    </button>
+                </div>
+                <div class="history-section">
+                    <div class="history-title">Recent Runs</div>
+                    <div class="history-list" id="historyList">
+                        <div class="no-history">No acheivements. Start it!!!</div>
+                    </div>
                 </div>
                 </div>
-                
+                <footer>
+                    <span>TypeRush - Test your typing speed!!</span>
+                    <div class="keyboard-shortcut-row">
+                        <span class="kbd-hint"><span class="kbd-key">Tab</span> restart</span>
+                        <span class="kbd-hint"><span class="kbd-key">Esc</span> reset</span>
+                    </div>
+                </footer>
+            </div>
+            <div class="results-overlay" id="resultsOverlay">
+                <div class="results-modal">
+                    <h2>Test completed. Less see your results!</h2>
+                    <div class="results-big-number" id="resultWpm">--</div>
+                    <div class="results-big-label">Words per minute</div>
+                    <div class="results-details-grid">
+                        <div class="result-detail-box">
+                            <div class="result-detail-val" id="resultAccuracy">--</div>
+                            <div class="result-detail-lbl">Accuracy</div>
+                        </div>
+                        <div class="result-detail-box">
+                            <div class="result-detail-val" id="resultMistakes">--</div>
+                            <div class="result-detail-lbl">Mistakes</div>
+                        </div>
+                        <div class="result-detail-box">
+                            <div class="result-detail-val" id="resultChars">--</div>
+                            <div class="result-detail-lbl">Chars Typed</div>
+                        </div>
+                    </div>
+                    <div class="results-rating" id="resultRating">...</div>
+                    <div class="results-actions">
+                        <button class="btn-try-again" id="tryAgainBtn">Try Again</button>
+                        <button class="btn-new-test" id="newTestBtn">New Text</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
     <script src="script.js"></script>
 </body>
 </html>
