@@ -550,3 +550,96 @@ header{
     letter-spacing: 1px;
     font-family: 'Space Mono',monospace;
 }
+.results-rating{
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    font-style: italic;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+.results-actions{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+.btn-try-again{
+    border: 1px solid rgba(232, 197, 71, 0.35);
+    background: rgba(232, 197, 71, 0.15);
+    color: var(--accent);
+    font-family: 'Space Mono',monospace;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    padding: 12px 28px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+.btn-try-again:hover{
+    background: rgba(232, 197, 71, 0.2);
+}
+.btn-new-test{
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'Space Mono',monospace;
+    font-size: 0.85rem;
+    padding: 12px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-new-test-hover{
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+}
+.history-section{
+    width: 100%;
+    margin-top: 8px;
+}
+.history-title{
+    font-size: 0.75rem;
+    font-family: 'Space Mono',monospace;
+    color: var(--text-muted);
+    padding-left: 4px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+.history-list{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.history-item{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Space Mono',monospace;
+    font-size: 0.78rem;
+    animation: slidein 0.3s ease;
+}
+@keyframes slidein{
+    from{
+        opacity: 0;
+        transform: translateX(-8px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+.history-item .h-wpm{
+    color: var(--accent);
+    font-weight: 700;
+}
+.history-item .h-acc{
+    color: var(--accent-green);
+}
