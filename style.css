@@ -358,4 +358,195 @@ header{
 .text-display .char.current{
     color: var(--text-primary);
 }
-
+/*less continueeee */
+.text-display .char.current::before{
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 2px;
+    bottom: 2px;
+    width: 2px;
+    background: var(--cursor-color);
+    border-radius: 1px;
+    animation: blink 1.1s ease-in-out infinite;
+}
+@keyframes blink{
+    0%,45%{
+        opacity: 1;
+    }50%,90%{
+        opacity: 0;
+    }100%{
+        opacity: 1;
+    }
+}
+.text-display .char.pending{
+    color: var(--text-dim);
+}
+.hidden-input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: text;
+    font-size: 16px;
+    z-index: 10;
+    border: none;
+    resize: none;
+    outline: none;/*hattrick of none lmao*/
+    background: transparent;
+}
+.click-hint{
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    font-family: 'Space Mono',monospace;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+.typing-display-container.test-active .click-hint{
+    opacity: 0;
+}
+.word-count-bar{
+    display: flex;
+    gap: 3px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+.wc-pip{
+ width: 8px;
+ height: 8px;
+ background-color: var(--text-dim);
+ transition: background 0.15s;
+ border-radius: 2px;   
+}
+.wc-pip-done{
+    background: var(--accent-green);
+}
+.wc-pip.current-word{
+    background:var(--accent);
+}
+.action-row{
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.btn-restart{
+    background: rgba(232, 197, 71, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(232, 197, 71, 0.3);
+    border-radius: 8px;
+    font-family: 'Space Mono',monospace;
+    font-size: 0.8rem;
+    padding: 10px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+}
+.btn-restart:hover{
+    background: rgba(232, 197, 71, 0.18);
+    transform: translateY(-1px);
+}
+.btn-restart:active{
+    transform: translateY(0);
+}
+.btn-new-text:hover{
+    background: rgba(94, 207, 160, 0.08);
+    border: 1px solid rgba(94, 207, 160, 0.25);
+    color: var(--accent-green);
+    font-family: 'Space Mono',monospace;
+    font-size: 0.82rem;
+    padding: 10px 24px;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+.btn-new-text:hover{
+    background: rgba(94, 2027, 160, 0.14);
+    transform: translateY(-1px);
+}
+.results-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 13, 18, 0.88);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+.results-overlay.visible{
+    opacity: 1;
+    pointer-events: all;
+}
+.results-modal{
+    background: var(--bg-card);
+    border: 1px solid rgba(232, 197, 71, 0.2);
+    border-radius: 20px;
+    padding: 40px 20px;
+    width: min(500px,90vw);/*this is also first time me using this lol*/
+    position: relative;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.35s ease;
+}
+.results-modal h2{
+   font-family: 'Space Mono',monospace;
+   font-size: 1.1rem;
+   color: var(--text-muted);
+   text-transform: uppercase;
+   margin-bottom: 28px;
+   letter-spacing: 2px; 
+}
+.results-big-number{
+    font-family: 'Space Mono',monospace;   
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 32px;
+}
+.results-big-label{
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Space Mono',monospace;
+    margin-bottom: 32px;
+}
+.results-details-grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+.result-detail-box{
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 14px 12px;
+    text-align: center;
+}
+.result-detail-lbl{
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Space Mono',monospace;
+}
