@@ -289,3 +289,73 @@ header{
     font-family: 'Space Mono',monospace;
 }
 /*this is it for today*/
+.stat-value{
+    font-family: 'Space Mono',monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+}
+.stat-value.wpm-val{
+    color: var(--accent);
+}
+.stat-value.accuracy-val{
+    color: var(--accent-green);
+}
+.stat-value.timer-val{
+    color: var(--accent-blue);
+}
+.stat-sub{
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    font-family: 'Space Mono',monospace;
+}
+.progress-bar-wrap{
+    width: 100%;
+    height: 3px;
+    background:rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.4s ease;
+}
+.typing-area-wrapper{
+    width: 100%;
+    position: relative;
+}
+.typing-display-container{
+    background:var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 16px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+}
+.typing-display-container.test-active{
+    border-color: rgba(232, 197, 71, 0.2);
+}
+.typing-display-container.test-error{
+    border-color: rgba(240, 112, 112, 0.25);
+}
+.text-display{
+    font-family: 'Space Mono',monospace;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    letter-spacing: 0.3px;
+    color: var(--text-dim);
+    word-break: break-word;
+    user-select: none;
+    position: relative;
+    min-height: 120px;
+}
+.text-display .char{
+    position: relative;
+    transition: color 0.05s;
+}
+.text-display .char.correct{
+    color: var(--correct-color);
+}
+.text-display .char.current{
+    color: var(--text-primary);
+}
+
