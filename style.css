@@ -643,3 +643,131 @@ header{
 .history-item .h-acc{
     color: var(--accent-green);
 }
+/*im so tired*/
+.history-time .h-mistakes{
+    color: var(--accent-alt);
+}
+.history-item .h-time{
+    color: var(--text-muted);
+}
+.history-item .h-num{
+    color: var(--text-dim);
+    min-width: 22px;
+}
+.no-history{
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-family: 'Space Mono',monospace;
+    text-align: center;
+    padding: 20px;
+}
+footer{
+    border-top: 1px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+footer span{
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    font-family: 'Space Mono',monospace;
+}
+.keyboard-shortcut-row{
+    display: flex;
+    gap: 14px;
+}
+.kbd-hint{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.67rem;/*hehe*/
+    color: var(--text-dim);
+    font-family: 'Space Mono',monospace;
+}
+.kbd-key{
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 0.65rem;
+}
+/*les goooo finally  now only some responsive stuffs and lil more is remaining*/
+@media(max-width:480px){
+    .stats-grid{
+        grid-template-columns: repeat(2,1fr);
+        gap: 8px;
+    }
+    .stat-value{
+        font-size: 1.4rem;
+    }
+    .logo{
+        font-size: 1.1rem;
+    }
+    .results-big-number{
+        font-size: 3.5rem;
+    }
+    .results-details-grid{
+        grid-template-columns: repeat(3,1fr);
+        gap: 10px;
+    }
+    .results-actions{
+        flex-direction: column;
+    }
+    .btn-try-again,.btn-new-test{
+        text-align: center;
+    }
+    .keyboard-shortcut-row{
+        display: none;
+    }
+}
+.cap-indicator{
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(240, 112, 112, 0.15);
+    border: 1px solid rgba(240, 112, 112, 0.3);
+    color: var(--accent-alt);
+    font-family: 'Space Mono',monospace;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: none;
+    letter-spacing: 1px;
+}
+.cap-indicator.visible{
+    display: block;
+}
+.wpm-flash{
+    animation: wpmflash 0.4s ease;
+}
+@keyframes wpmflash{
+    0%{
+        transform: scale(1);
+    }50%{
+        transform: scale(1.07); /*suiiiii*/
+    }100%{
+        transform: scale(1);
+    }
+}
+.test-complete-bar{
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
+    background: linear-gradient(90deg, var(--accent), var(--accent-green), var(--accent-blue));
+}
+.test-complete-bar.show{
+    transform: scaleX(1);
+}
+.smooth-wpm-note{
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    font-family: 'Space Mono', monospace;
+    text-align: right;
+    width: 100%;
+    padding-right: 4px;
+}
+/*woah finally done after 4 days of hardwork*/
