@@ -276,3 +276,71 @@ function showResults(wpm,acc,mistakes,chars){
     document.getElementById('resultsRating').textContent=ratingText;
     resultsOverlay.classList.add('visible');
 }
+function getRatingText(wpm,acc){
+    if(wpm>=120&&acc>=98)return "WTF you absolutely cooked good job!";
+    if(wpm>=100&&acc>=96)return "Damn thats elite typing good job!!";
+    if(wpm>=80&&acc>=95)return "nice one but and its pretty awesome too gud job";
+    if(wpm>=60&&acc>=90)return "not bad comon you coan do it more!";
+    if(wpm>=40&&acc>=85)return "very decent but not good enough";
+    if(wpm>=20)return "damnnnnn you got absolutely cooked lmao ";
+    return "bro you gotta practice more";
+}
+function saveToHistory(wpm,acc,mistakes,chars,elapsed){
+    let entry={
+        wpm,acc,mistakes,chars,elapsed,time:new Date()
+    };
+    runHistory.unshift(entry);
+    if(runHistory.length>8)runHistory.pop();
+    renderHistory();
+}
+function renderHistory(){
+    if(runHistory.length===0){
+        historyList.innerHTML='<div class="no-history">No history. take a test if you have guts</div>';
+        return;
+    }
+    historyList.innerHTML='';
+    runHistory.forEach(function(run,i){
+        let item= document.createElement('div');
+        item.classList.add('history-item');
+        item.innerHTML=`
+            <span class="h-num">#${runHistory.length-i}</span>
+            <span class="h-wpm">${run.wpm} WPM</span>
+            <span class="h-acc">${run.acc}>%</span>
+            <span class="h-mistakes">${run.mistakes} err</span>
+            <span class="h-time">${run.elapsed}s</span>
+        `;
+        historyList.appendChild(item);
+    });
+}
+function resetTest(keepText){
+    clearInterval(timerInterval);
+    testrunning=false;
+    testfinished=false;
+    currentIdx=0;
+    typedChars=0;
+    mistakeCount =0;
+    timerunning = totalTime;
+    wordsCompleted=0;
+    currentWordIdx= 0;
+    totalKeystrokes= 0;
+    correctKeystrokes=0;
+    smoothedWpm=0;
+    lastWpmUpdate=0;
+    timeRemaining = totalTime;
+    wpmDisplay.textContent ='--';
+    accuracyDisplay.textContent='--';
+    mistakesDisplay.textContent = '0';
+    timerDisplay.textContent=totalTime;
+    progressBar.style.width='0%';
+    typingContainer.classList.remove('running');
+    completeBar.classList.remove('show');
+    resultsOverlay.classList.remove('visible');
+    hiddenInput.value= '';
+    if(!keepText){
+        currentText=generateText();
+    }
+    renderText(currentText);
+    buildworldboundaries(currentText);
+    buildWordBar(currentText);
+    hiddenInput.focus();
+}
