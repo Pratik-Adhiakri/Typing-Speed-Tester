@@ -61,3 +61,53 @@ function buildworldboundaries(text){
         });
     }
 }
+function generateText(){
+    let baseIdx= Math.floor(Math.random()*paragraphtemplates.length);
+    let base= paragraphtemplates[baseIdx];
+    let extraWords= [];
+    let needed= Math.max(0,80-base.split(' ').length);
+    for(let i=0;i<needed;i++){
+        extrayWords.push(wordpool[Math.floor(Math.random()*wordpool.length)]);
+    }
+    let allWords= base.spilit(' ').concat((extraWords));
+    let result= allWords.join(' ');
+    return result;
+}
+function renderText(text){
+    textDisplay.innerHTML = '';
+    charElements= [];
+    for(let i=0;i<text.length;i++){
+    let span = document.createElement('span');
+    span.classList.add('char','pending');
+    if(text[i]===' '){
+        span.innerHTML='&nbsp';
+        span.dataset.isSpace='true'; 
+    }else{
+        span.textContent = text[i];
+    }
+    textDisplay.appendChild(span);
+    charElements.push(span);
+}
+if(charElements.length>0){
+    charElements[0].classList.remove('pending');
+    charElements[0].classList.add('current');
+}
+}
+function buildWordBar(text){
+    wordCountBar.innerHTML= '';
+    let words= text.split(' ');
+    words.forEach((w,i)=>{
+        let pip =document.createElement('div');
+        pip.classList.add('wc-pip');
+        if(i===0)pip.classList.add('current-word');
+        wordCountBar.appendChild(pip);
+    });
+}
+function updateWordBar(){
+    let pips = wordCountBar.querySelectorAll('.wc-pip');
+    pips.forEach((pip,i)=>{
+        pip.classList.remove('current-word');
+        if(i<currentWordIdx)pip.classList.add('done');
+        else if(i===currentWordIdx)pip.classList.add('current-word');
+    });
+}
