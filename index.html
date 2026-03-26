@@ -32,7 +32,9 @@
                     <button class="preset-btn active" data-time="30">30s</button>
                     <button class="preset-btn" data-time="60">60s</button>
                     <button class="preset-btn" data-time="120">2min</button>
-                    <div class="custom time-wrap">
+                    <div class="custom-time-wrap">
+                        <input type="number" id="customTimeInput" min="5" max="600" placeholder="sec">
+                        <button class="btn-set-custom" id="setCustomBtn">Set</button>
                         <label class="word-count-toggle">
                             <input type="checkbox" id="wordBarToggle" checked>
                             word bar <!--hehe not necessary but stilllll-->
@@ -52,7 +54,7 @@
                     </div>
                     <div class="stat-card">
                         <span class="stat-label">Mistakes</span>
-                        <span class="stat-value mistakes-val" id="mistakeDisplay">0</span>
+                        <span class="stat-value mistakes-val" id="mistakesDisplay">0</span>
                         <span class="stat-sub">errors made</span>
                     </div>
                     <div class="stat-card">
@@ -70,7 +72,7 @@
                         <div class="text-display" id="textDisplay"></div>
                         <textarea id="hiddenInput" class="hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
                         <span class="cap-indicator" id="capIndicator">CAPS</span>
-                        <span class="click-hunt">click to start and less see what you are capable of!</span>
+                        <span class="click-hint">click to start and less see what you are capable of!</span>
                     </div>
                 </div>
                 <div class="test-complete-bar" id="completeBar"></div>
