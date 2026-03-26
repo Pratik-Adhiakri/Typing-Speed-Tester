@@ -111,3 +111,134 @@ function updateWordBar(){
         else if(i===currentWordIdx)pip.classList.add('current-word');
     });
 }
+//lets just not stop
+function findcurrentWordIdx(charIdx){
+    for(let i=0;i<wordBoundaries.length;i++){
+        if(charIdx>=wordBoundaries[i].start &&charIdx<wordBoundaries[i].end){
+            return i;
+        }
+    }
+    if(wordBoundaries.length>0&&charIdx>=wordBoundaries[wordBoundaries.length-1].end){
+        return wordBoundaries.length;
+    }
+    return 0;
+}
+function starttimer(){
+    if(timerInterval)clearInterval(timerInterval);
+    timerInterval= setInterval(function(){
+        if(!testrunning){
+            clearInterval(timerInterval);
+            return;
+        }
+        timeRemaining--;
+        timerDisplay.textContent =timeRemaining;
+        let progress =((totalTime-timeRemaining)/totalTime)*100;
+        progressBar.style.width=progress+'%';
+        let now=Date.now();
+        if(now-lastWpmUpdate>800){
+            updateLiveWpm();
+            lastWpmUpdate=now;
+        }
+        if(timeRemaining<=0){
+            clearInterval(timerInterval);
+            finishTest();
+        }
+    },1000);
+}
+function getAccuracyMulti(){
+    if(totalKeystrokes===0)return 1.00;
+    return correctKeystrokes/totalKeystrokes;
+}
+function calcWpm(wordsDone){
+    let multiplier= 60/totalTime;
+    let accMultiplier= getAccuracyMulti();
+    return Math.round(wordsDone*multiplier*accMultiplier); 
+}
+function updateLiveWpm(){
+    if(!testrunning)return;
+    let elapsed =totalTime-timeRemaining;
+    if(elapsed<1)return;
+    let displayWpm =calcWpm(wordsCompleted);
+    wpmDisplay.textContent =displayWpm;
+    let prev= parseInt(wpmDisplay.dataset.lastVal||'0');
+    if(Math.abs(displayWpm-prev)>2){
+        wpmDisplay.classList.remove('wpm-flash');
+        void wpmDisplay.offsetWidth;
+        wpmDisplay.classList.add('wpm-flash');
+        wpmDisplay.dataset.lastVal= displayWpm;
+    }
+}
+function updateAccuracy(){
+    if(totalKeystrokes===0){
+        accuracyDisplay.textContent='--';
+        return;
+    }
+    let acc= Math.round((correctKeystrokes/totalKeystrokes)*100);
+    accuracyDisplay.textContent=acc +'%';
+}
+function handleKeyInput(e){
+    if(testfinished)return;
+    if(e.key==='Tab'){
+        e.preventDefault();
+        resetTest(false);
+        return;
+    }
+    if(e.key==='Escape'){
+        e.preventDefault();
+        resetTest(false);
+        return;
+    }
+    if(e.key==='CapsLock'){
+        capsLockOn= e.getModifierState&&e.getModifierState('CapsLock');
+        if(capsLockOn){
+          capIndicator.classList.add('visible');   
+        }else{
+            capIndicator.classList.remove('visible');
+        }
+        return;
+    }
+    if(e.ctrlKey||e.altKey||e.metaKey)return;
+    if(!testrunning&&e.key.length===1){
+        testrunning= true;
+        typingContainer.classList.add('running');
+        starttimer();
+        lastWpmUpdate= Date.now();
+    }
+    if(!testrunning&&e.key!=='Backspace')return;
+    if(e.key==='Backspace'){
+        handleBackspace();
+        return;
+    }
+    if(e.key.length!==1)return;
+    if(currentIdx>=currentIdx.length)return;
+    let expectedChar= currentText[currentIdx];
+    let typedChars=e.key;
+    totalKeystrokes++;
+    typedChars++; 
+    charElements[currentIdx].classList.remove('current');
+    if(typedChars===expectedChar){
+        charElements[currentIdx].classList.add('correct');
+        correctKeystrokes++;
+        if(expectedChar===' '){
+            wordsCompleted++;
+            currentWordIdx++;
+            updateWordBar();
+            updateLiveWpm();
+        }
+    }else{
+        charElements[currentIdx].classList.add('incorrect');
+        mistakeCount++;
+        mistakesDisplay.textContent= mistakeCount;
+        typingContainer.classList.add('test-error');
+        setTimeout(function() {
+            typingContainer.classList.remove('test-error');
+        }, 300);
+        updateLiveWpm();
+    }
+    currentIdx++;
+    if(currentIdx<charElements.length){
+        charElements[currentIdx+1].classList.remove('current');
+        charElements[currentIdx+1].classList.add('pending');
+    }
+    typedChars=Math.max(0,typedChars-1);
+}
