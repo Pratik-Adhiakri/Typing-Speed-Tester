@@ -242,3 +242,37 @@ function handleKeyInput(e){
     }
     typedChars=Math.max(0,typedChars-1);
 }
+function finishTest(){
+    if(testfinished)return;
+    testfinished=true;
+    testrunning=false;
+    clearInterval(timerInterval);
+    let elapsed = totalTime-timeRemaining;
+    if(elapsed<1)elapsed=1;
+    let totalWordsForCalc= wordsCompleted;
+    if(currentIdx>0&&currentText[currentIdx-1]!==' '){
+        totalWordsForCalc++;
+    }
+    let finalWpm =Math.round(totalWordsForCalc*(60/totalTime)*getAccuracyMulti());
+    let finalAccuracy= totalKeystrokes>0 ? Math.round((correctKeystrokes/totalKeystrokes)*100) : 0;
+    wpmDisplay.textContent =finalWpm;
+    accuracyDisplay.textContent=finalAccuracy+'%';
+    timerDisplay.textContent='0';
+    progressBar.style.width='100%';
+    completeBar.classList.add('show');
+    saveToHistory(finalWpm,finalAccuracy.mistakeCount,typedChars,elapsed);
+    setTimeout(function(){
+        showResults(finalWpm,finalAccuracy,mistakeCount,typedChars);
+    },500);
+}
+//launch time
+function showResults(wpm,acc,mistakes,chars){
+    document.getElementById('resultWpm').textContent=wpm;
+    document.getElementById('resultAccuracy').textContent=acc+'%';
+    document.getElementById('resultMistakes').textContent= mistakes;
+    document.getElementById('resultChars').textContent= chars;
+    let ratingText= getRatingText(wpm,acc);
+    document.getElementById('resultsRating').textContent= ratingText;
+    document.getElementById('resultsRating').textContent=ratingText;
+    resultsOverlay.classList.add('visible');
+}
