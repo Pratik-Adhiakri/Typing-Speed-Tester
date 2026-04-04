@@ -1,7 +1,7 @@
 # TypeRush
 
 Type Rush is a typing speed tester which is used to find your **YESS YOURS** typing speed, comon try it if you can! It is made entirely by web technologies like HTML, CSS AND JS yk.
-<img src="path/to/typerushv2.1.png" alt="CR7" width="100%">
+<img src="typerushv2.1.png" alt="CR7" width="100%">
 
 ---
 
